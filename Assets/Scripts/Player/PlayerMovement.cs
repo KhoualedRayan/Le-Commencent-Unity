@@ -10,34 +10,39 @@ public class PlayerMovement : MonoBehaviour
     public float jumpForce;
 
     public Rigidbody2D rb;
-    private Vector3 velocity = Vector3.zero;
+    
 
     private bool isJumping;
     private bool isGrounded;
 
+    public Transform groundCheck;
+    public float groundCheckRadius;
+    public LayerMask collisionLayers;
+
     public SpriteRenderer spriteRenderer;
-    public Transform groundCheckLeft;
-    public Transform groundCheckRight;
     public Animator animator;
+
+    private Vector3 velocity = Vector3.zero;
+    private float horizontalMovement;
+
+    //Fonction réservé pour l'update de la physique uniquement
     void FixedUpdate()
     {
-        isGrounded = Physics2D.OverlapArea(groundCheckLeft.position, groundCheckRight.position);        
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position,groundCheckRadius,collisionLayers);
 
-        float horizontalMovement = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
-
+        horizontalMovement = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
         MovePlayer(horizontalMovement);
+    }
+    //Fonction update pour tout ce qui n'est pas physique
+    void Update()
+    {
+        if (Input.GetButtonDown("Jump") && isGrounded)
+            isJumping = true;
 
         Flip(rb.velocity.x);
 
         float characterVelocity = Mathf.Abs(rb.velocity.x);
         animator.SetFloat("Speed", characterVelocity);
-
-
-    }
-    void Update()
-    {
-        if (Input.GetButtonDown("Jump") && isGrounded)
-            isJumping = true;
     }
     void MovePlayer(float _horizontalMovement)
     {
@@ -60,5 +65,11 @@ public class PlayerMovement : MonoBehaviour
         {
             spriteRenderer.flipX = false;
         }
+    }
+    //Fonction qui permet de dessiner un cercle autour du gizmo de la détection de collision pour le saut
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(groundCheck.position,groundCheckRadius);
     }
 }
