@@ -10736,6 +10736,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   currentHealth: 0
+  isInvincible: 0
+  invicibiltyFlashDelay: 0.15
+  invicibilityTime: 1
+  graphics: {fileID: 1585417370}
   healthBar: {fileID: 980384152}
 --- !u!1 &1588592364
 GameObject:
@@ -11033,6 +11037,10 @@ PrefabInstance:
     - target: {fileID: 4055985451269426714, guid: 1d1d350f4a090c341a797e1f1088c61c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4589681480029868329, guid: 1d1d350f4a090c341a797e1f1088c61c, type: 3}
+      propertyPath: damageOnCollision
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 5731928284688210577, guid: 1d1d350f4a090c341a797e1f1088c61c, type: 3}
       propertyPath: m_Name
