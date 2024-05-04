@@ -48,9 +48,10 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector3 targetVelocity = new Vector2(_horizontalMovement, rb.velocity.y);
         rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref velocity, 0.05f);
-        if(isJumping )
+        if(isJumping)
         {
-            rb.AddForce(new Vector2(0f, jumpForce));
+            //anciennement forcemode2d.force avec 300 de j force
+            rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
             isJumping=false;
         }
     }
