@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool isJumping;
     private bool isGrounded;
+    private bool isClimbing;
 
     public Transform groundCheck;
     public float groundCheckRadius;
@@ -24,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector3 velocity = Vector3.zero;
     private float horizontalMovement;
+    private float verticalMovement;
 
     //Fonction réservé pour l'update de la physique uniquement
     void FixedUpdate()
@@ -31,7 +33,8 @@ public class PlayerMovement : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(groundCheck.position,groundCheckRadius,collisionLayers);
 
         horizontalMovement = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
-        MovePlayer(horizontalMovement);
+        verticalMovement = Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime;
+        MovePlayer(horizontalMovement, verticalMovement);
     }
     //Fonction update pour tout ce qui n'est pas physique
     void Update()
@@ -44,15 +47,22 @@ public class PlayerMovement : MonoBehaviour
         float characterVelocity = Mathf.Abs(rb.velocity.x);
         animator.SetFloat("Speed", characterVelocity);
     }
-    void MovePlayer(float _horizontalMovement)
+    void MovePlayer(float _horizontalMovement, float _verticalMovement)
     {
-        Vector3 targetVelocity = new Vector2(_horizontalMovement, rb.velocity.y);
-        rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref velocity, 0.05f);
-        if(isJumping)
+        if (!isClimbing) { 
+            Vector3 targetVelocity = new Vector2(_horizontalMovement, rb.velocity.y);
+            rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref velocity, 0.05f);
+            if(isJumping)
+            {
+                //anciennement forcemode2d.force avec 300 de j force
+                rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
+                isJumping=false;
+            }
+        }else
         {
-            //anciennement forcemode2d.force avec 300 de j force
-            rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
-            isJumping=false;
+            //déplacement vertical, monte une échelle
+            Vector3 targetVelocity = new Vector2(rb.velocity.x, _verticalMovement);
+            rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref velocity, 0.05f);
         }
     }
 
@@ -72,5 +82,10 @@ public class PlayerMovement : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(groundCheck.position,groundCheckRadius);
+    }
+
+    public void SetClimbing(bool isClimbing)
+    {
+        this.isClimbing = isClimbing;
     }
 }
