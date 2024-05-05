@@ -7,6 +7,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed;
+    public float climbSpeed;
     public float jumpForce;
 
     public Rigidbody2D rb;
@@ -33,7 +34,7 @@ public class PlayerMovement : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(groundCheck.position,groundCheckRadius,collisionLayers);
 
         horizontalMovement = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
-        verticalMovement = Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime;
+        verticalMovement = Input.GetAxis("Vertical") * climbSpeed * Time.deltaTime;
         MovePlayer(horizontalMovement, verticalMovement);
     }
     //Fonction update pour tout ce qui n'est pas physique
@@ -46,6 +47,7 @@ public class PlayerMovement : MonoBehaviour
 
         float characterVelocity = Mathf.Abs(rb.velocity.x);
         animator.SetFloat("Speed", characterVelocity);
+        animator.SetBool("IsClimbing", isClimbing);
     }
     void MovePlayer(float _horizontalMovement, float _verticalMovement)
     {
@@ -61,7 +63,7 @@ public class PlayerMovement : MonoBehaviour
         }else
         {
             //déplacement vertical, monte une échelle
-            Vector3 targetVelocity = new Vector2(rb.velocity.x, _verticalMovement);
+            Vector3 targetVelocity = new Vector2(0, _verticalMovement);
             rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref velocity, 0.05f);
         }
     }
@@ -88,4 +90,5 @@ public class PlayerMovement : MonoBehaviour
     {
         this.isClimbing = isClimbing;
     }
+    public bool IsClimbing() {  return isClimbing; }    
 }
