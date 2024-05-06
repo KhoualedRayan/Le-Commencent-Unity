@@ -39,7 +39,7 @@ public class PlayerHealth : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.K) )
         {
-            TakeDamage(15);
+            TakeDamage(55);
         }
     }
 
@@ -57,11 +57,33 @@ public class PlayerHealth : MonoBehaviour
         {
             currentHealth -= damage;
             healthBar.SetHealth(currentHealth); 
+            //vérifie si le joueur est toujours vivant
+            if(currentHealth <= 0)
+            {
+                Die();
+                return;
+            }          
             isInvincible = true;
             StartCoroutine(InvicibiltyFlash());
             StartCoroutine(HandleInvincibilityDelay()); 
         }
     }
+    public void Die()
+    {
+        Debug.Log("Joueur mort");
+        //Bloque les mouvements du perso
+        PlayerMovement.instance.StopVelocity();
+
+        PlayerMovement.instance.enabled = false;
+        
+        //Jouer l'animation d'élimination
+        PlayerMovement.instance.animator.SetTrigger("Die") ;
+        //Empêcher les interactions physique avec les autres éléments de la scène
+        PlayerMovement.instance.rb.bodyType = RigidbodyType2D.Kinematic;
+        PlayerMovement.instance.playerCollider.enabled = false;
+
+    }
+
     //Fonction Coroutine qui permet de gérer le clignotement du perso quand il est invincible
     public IEnumerator InvicibiltyFlash()
     {

@@ -23,10 +23,23 @@ public class PlayerMovement : MonoBehaviour
 
     public SpriteRenderer spriteRenderer;
     public Animator animator;
+    public CapsuleCollider2D playerCollider;
 
     private Vector3 velocity = Vector3.zero;
     private float horizontalMovement;
     private float verticalMovement;
+
+    public static PlayerMovement instance;
+
+    private void Awake()
+    {
+        if (instance != null)
+        {
+            Debug.LogWarning("Il y'a déjà plus d'une instance de PlayerMovement dans la scène.");
+            return;
+        }
+        instance = this;
+    }
 
     //Fonction réservé pour l'update de la physique uniquement
     void FixedUpdate()
@@ -91,4 +104,9 @@ public class PlayerMovement : MonoBehaviour
         this.isClimbing = isClimbing;
     }
     public bool IsClimbing() {  return isClimbing; }    
+    public void StopVelocity()
+    {
+        Vector3 targetVelocity = new Vector2(0,0);
+        rb.velocity = targetVelocity;
+    }
 }
