@@ -1,11 +1,12 @@
 using UnityEngine;
 using System.Collections;
+using System;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public int maxHealth = 100;
-    public int currentHealth;
-    public bool isInvincible = false;
+    private int maxHealth = 100;
+    private int currentHealth;
+    private bool isInvincible = false;
     //délai entre chaque clignotement lors de la prise de dégats
     public float invicibiltyFlashDelay = 0.15f;
     //temps d'invicibilité
@@ -14,6 +15,18 @@ public class PlayerHealth : MonoBehaviour
 
     public SpriteRenderer graphics;
     public HealthBar healthBar;
+
+    public static PlayerHealth instance;
+
+    private void Awake()
+    {
+        if (instance != null)
+        {
+            Debug.LogWarning("Il y'a déjà plus d'une instance de PlayerHealth dans la scène.");
+            return;
+        }
+        instance = this;
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +42,14 @@ public class PlayerHealth : MonoBehaviour
             TakeDamage(15);
         }
     }
+
+    //Heal les hp du perso
+    public void HealPlayer(int healAmout)
+    {
+        currentHealth = Math.Min(maxHealth, healAmout + currentHealth);         
+        healthBar.SetHealth(currentHealth);
+    }
+
     //Le perso prend des dégâts, puis est invicible pdt x secondes
     public void TakeDamage(int damage)
     {
@@ -58,5 +79,13 @@ public class PlayerHealth : MonoBehaviour
         yield return new WaitForSeconds(invicibilityTime);    
         isInvincible = false;
 
+    }
+    public int getCurrentHealth()
+    {
+        return currentHealth;
+    }
+    public int getMaxHealth()
+    {
+        return maxHealth;
     }
 }

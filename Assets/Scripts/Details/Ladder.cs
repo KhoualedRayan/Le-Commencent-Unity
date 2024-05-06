@@ -45,7 +45,8 @@ public class Ladder : MonoBehaviour
             isInRange = false;
             playerMovement.SetClimbing(false);
             topCollider.isTrigger = false;
-            interactUI.enabled = false;
+            if(interactUI!= null) 
+                interactUI.enabled = false;
         }
     }
 }
