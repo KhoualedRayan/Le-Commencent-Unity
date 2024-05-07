@@ -46,14 +46,14 @@ public class PlayerMovement : MonoBehaviour
     {
         isGrounded = Physics2D.OverlapCircle(groundCheck.position,groundCheckRadius,collisionLayers);
 
-        horizontalMovement = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
-        verticalMovement = Input.GetAxis("Vertical") * climbSpeed * Time.deltaTime;
         MovePlayer(horizontalMovement, verticalMovement);
     }
     //Fonction update pour tout ce qui n'est pas physique
     void Update()
     {
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        horizontalMovement = Input.GetAxis("Horizontal") * moveSpeed * Time.fixedDeltaTime;
+        verticalMovement = Input.GetAxis("Vertical") * climbSpeed * Time.fixedDeltaTime;
+        if (Input.GetButtonDown("Jump") && isGrounded && !isClimbing)
             isJumping = true;
 
         Flip(rb.velocity.x);

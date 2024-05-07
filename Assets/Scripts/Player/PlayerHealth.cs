@@ -77,11 +77,27 @@ public class PlayerHealth : MonoBehaviour
         PlayerMovement.instance.enabled = false;
         
         //Jouer l'animation d'élimination
-        PlayerMovement.instance.animator.SetTrigger("Die") ;
+        PlayerMovement.instance.animator.SetFloat("Speed", 0f);
+        PlayerMovement.instance.animator.SetTrigger("Die");
         //Empêcher les interactions physique avec les autres éléments de la scène
         PlayerMovement.instance.rb.bodyType = RigidbodyType2D.Kinematic;
         PlayerMovement.instance.playerCollider.enabled = false;
-
+        //Lance le gameover
+        GameOverManager.instance.OnPlayerDeath();
+    }
+    public void Respawn()
+    {
+        //Réactive les mouvements du perso
+        PlayerMovement.instance.enabled = true;
+        
+        //Jouer l'animation de Respawn
+        PlayerMovement.instance.animator.SetTrigger("Respawn");
+        //Recouvre les interactions physique avec les autres éléments de la scène
+        PlayerMovement.instance.rb.bodyType = RigidbodyType2D.Dynamic;
+        PlayerMovement.instance.playerCollider.enabled = true;
+        //Remet les pv au max
+        currentHealth = maxHealth;
+        healthBar.SetHealth(currentHealth);
     }
 
     //Fonction Coroutine qui permet de gérer le clignotement du perso quand il est invincible
