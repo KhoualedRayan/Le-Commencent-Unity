@@ -77,10 +77,10 @@ public class PlayerHealth : MonoBehaviour
         PlayerMovement.instance.enabled = false;
         
         //Jouer l'animation d'élimination
-        PlayerMovement.instance.animator.SetFloat("Speed", 0f);
         PlayerMovement.instance.animator.SetTrigger("Die");
         //Empêcher les interactions physique avec les autres éléments de la scène
         PlayerMovement.instance.rb.bodyType = RigidbodyType2D.Kinematic;
+        PlayerMovement.instance.rb.velocity = Vector3.zero;
         PlayerMovement.instance.playerCollider.enabled = false;
         //Lance le gameover
         GameOverManager.instance.OnPlayerDeath();
