@@ -40,6 +40,8 @@ public class GameOverManager : MonoBehaviour
     public void MainMenuButton()
     {
         //Retour au menu principal
+        DontDestroyOnLoadScene.instance.RemoveFromDontDestoyOnLoad();
+        SceneManager.LoadScene("MainMenu");
     }
     public void QuitMenu()
     {
