@@ -4,7 +4,7 @@ using System.Collections;
 public class LoadSpecificScene : MonoBehaviour
 {
     public string SceneName;
-    public Animator fadeSystem;
+    private Animator fadeSystem;
     private void Awake()
     {
         fadeSystem = GameObject.FindGameObjectWithTag("FadeSystem").GetComponent<Animator>();

@@ -17,6 +17,7 @@ public class PlayerHealth : MonoBehaviour
     public HealthBar healthBar;
 
     public static PlayerHealth instance;
+    public AudioClip hitSound;
 
     private void Awake()
     {
@@ -55,6 +56,7 @@ public class PlayerHealth : MonoBehaviour
     {
         if(!isInvincible)
         {
+            AudioManager.instance.PlayClipAt(hitSound,transform.position);
             currentHealth -= damage;
             healthBar.SetHealth(currentHealth); 
             //vérifie si le joueur est toujours vivant

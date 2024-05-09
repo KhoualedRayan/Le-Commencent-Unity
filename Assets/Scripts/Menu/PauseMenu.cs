@@ -47,4 +47,12 @@ public class PauseMenu : MonoBehaviour
         SceneManager.LoadScene("MainMenu");
         
     }
+    public void OpenSettingsButton()
+    {
+        settingsMenuUI.SetActive(true);
+    }
+    public void CloseSettingsButton()
+    {
+        settingsMenuUI.SetActive(false);
+    }
 }

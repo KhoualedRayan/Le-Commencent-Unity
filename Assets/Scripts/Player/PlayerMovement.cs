@@ -105,4 +105,8 @@ public class PlayerMovement : MonoBehaviour
         Vector3 targetVelocity = new Vector2(0,0);
         rb.velocity = targetVelocity;
     }
+    public float GetJumpForce()
+    {
+        return jumpForce;
+    }
 }

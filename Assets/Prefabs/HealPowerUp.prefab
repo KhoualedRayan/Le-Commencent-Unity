@@ -156,3 +156,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthPoint: 40
+  clip: {fileID: 8300000, guid: 058e4c3b62120dc489db3be4ae0b8f73, type: 3}

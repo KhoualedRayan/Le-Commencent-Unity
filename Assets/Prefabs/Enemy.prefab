@@ -153,6 +153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectToDestroy: {fileID: 5731928284688210577}
+  clip: {fileID: 8300000, guid: 14080ae53dc690b4580807b9ef69d7ef, type: 3}
 --- !u!1 &5731928284688210577
 GameObject:
   m_ObjectHideFlags: 0
