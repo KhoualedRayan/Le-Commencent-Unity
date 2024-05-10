@@ -18,6 +18,7 @@ public class PlayerHealth : MonoBehaviour
 
     public static PlayerHealth instance;
     public AudioClip hitSound;
+    public AudioClip deathSound;
 
     private void Awake()
     {
@@ -72,7 +73,8 @@ public class PlayerHealth : MonoBehaviour
     }
     public void Die()
     {
-        Debug.Log("Joueur mort");
+        //Joue l'audio de mort
+        AudioManager.instance.PlayClipAt(deathSound,transform.position);
         //Bloque les mouvements du perso
         PlayerMovement.instance.StopVelocity();
 
