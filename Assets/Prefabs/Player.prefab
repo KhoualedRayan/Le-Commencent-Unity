@@ -210,6 +210,7 @@ MonoBehaviour:
   graphics: {fileID: 2655531126726926300}
   healthBar: {fileID: 0}
   hitSound: {fileID: 8300000, guid: cc2aa49258d28b24fa7d0e6b4f826126, type: 3}
+  deathSound: {fileID: 8300000, guid: 512cd0cc4b29f1542a54c9cf62ded4d4, type: 3}
 --- !u!70 &2284010413329121055
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

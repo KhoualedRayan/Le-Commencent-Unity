@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7672736720462494984}
   - component: {fileID: 6170900831512468762}
   - component: {fileID: 6732792191996058869}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: DeathZone
   m_TagString: Untagged
   m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
@@ -42,7 +42,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 4326799349217779778}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: dc4f0649d5070e740b2a6a87ee720a14, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -65,7 +65,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 24.631454, y: -2.1621625}
+  m_Offset: {x: 29.06588, y: -2.3832927}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -76,7 +76,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 54.34153, y: 4.9312034}
+  m_Size: {x: 59.62316, y: 4.488943}
   m_EdgeRadius: 0
 --- !u!114 &6732792191996058869
 MonoBehaviour:
@@ -90,3 +90,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2173aec0b7b585548a611319c672766f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadeSystem: {fileID: 0}
