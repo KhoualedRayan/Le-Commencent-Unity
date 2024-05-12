@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class CurrentSceneManager : MonoBehaviour
 {
-    public bool isPlayerPresentByDefault = false;
     private int coinsPickedInThisScene;
+    private Vector3 respawnPoint;
 
     public static CurrentSceneManager instance;
     private void Awake()
@@ -14,6 +14,7 @@ public class CurrentSceneManager : MonoBehaviour
             return;
         }
         instance = this;
+        respawnPoint = GameObject.FindGameObjectWithTag("Player").transform.position;
     }
     public void AddCoinInScene(int coin)
     {
@@ -24,4 +25,12 @@ public class CurrentSceneManager : MonoBehaviour
         return coinsPickedInThisScene;
     }
 
+    public Vector3 GetRespawnPoint()
+    {
+        return respawnPoint;
+    }
+    public void SetRespawnPoint(Vector3 vector3)
+    {
+        respawnPoint = vector3;
+    }
 }

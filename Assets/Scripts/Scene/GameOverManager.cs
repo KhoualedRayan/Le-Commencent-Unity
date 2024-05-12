@@ -19,10 +19,6 @@ public class GameOverManager : MonoBehaviour
     }
     public void OnPlayerDeath()
     {
-        if (CurrentSceneManager.instance.isPlayerPresentByDefault)
-        {
-            DontDestroyOnLoadScene.instance.RemoveFromDontDestoyOnLoad();
-        }
         gameOverUI.SetActive(true);
     }
     public void RetryButton()
@@ -40,7 +36,6 @@ public class GameOverManager : MonoBehaviour
     public void MainMenuButton()
     {
         //Retour au menu principal
-        DontDestroyOnLoadScene.instance.RemoveFromDontDestoyOnLoad();
         SceneManager.LoadScene("MainMenu");
     }
     public void QuitMenu()
