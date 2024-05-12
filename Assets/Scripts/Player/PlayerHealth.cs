@@ -130,4 +130,9 @@ public class PlayerHealth : MonoBehaviour
     {
         return maxHealth;
     }
+    public void SetCurrentHealth(int health)
+    {
+        this.currentHealth = health;
+        healthBar.SetHealth(currentHealth);
+    }
 }
