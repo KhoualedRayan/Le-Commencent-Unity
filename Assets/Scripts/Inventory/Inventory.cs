@@ -8,12 +8,14 @@ public class Inventory : MonoBehaviour
     public int coinsCount;
 
     public static Inventory instance;
-    public int contentCurrentIndex = 0;
+    private int contentCurrentIndex = 0;
     public List<Item> content = new List<Item>();
     public Text coinsCountText;
     public Image itemImageUI;
     public Text itemNameUI;
     public Sprite emptyItemImage;
+    public PlayerEffects playerEffect;
+
     private void Awake()
     {
         if (instance != null)
@@ -46,7 +48,8 @@ public class Inventory : MonoBehaviour
         {
             Item currentItem = content[contentCurrentIndex];
             PlayerHealth.instance.HealPlayer(currentItem.hpGiven);
-            PlayerMovement.instance.moveSpeed += currentItem.speedGiven;
+            playerEffect.AddSpeed(currentItem.speedGiven, currentItem.speedDuration);
+            
             content.Remove(currentItem);    
             GetNextItem();
         }
