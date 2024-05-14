@@ -11,6 +11,7 @@ public class DialogueManager : MonoBehaviour
     public Animator animator;
     
     public static DialogueManager instance;
+    public bool isInDialogue = false;
     
     private void Awake()
     {
@@ -32,10 +33,19 @@ public class DialogueManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (isInDialogue && Input.GetKeyDown(KeyCode.E))
+        {
+            DisplayNextSentence();
+        }
     }
     public void StartDialogue(Dialogue dialogue)
     {
+        
+        //On bloque les mouvements du joueur
+        PlayerMovement.instance.enabled = false;
+        PlayerMovement.instance.rb.velocity = Vector3.zero;
+        PlayerMovement.instance.animator.SetFloat("Speed",0f);
+        //On lance le dialogue
         animator.SetBool("isOpen", true);
         nameText.text = dialogue.name;
         sentences.Clear();
@@ -45,6 +55,7 @@ public class DialogueManager : MonoBehaviour
             sentences.Enqueue(sentence);
         }
         DisplayNextSentence();
+        
     }
     public void DisplayNextSentence()
     {
@@ -59,7 +70,10 @@ public class DialogueManager : MonoBehaviour
     }
     private void EndDialogue()
     {
+        isInDialogue = false;
         animator.SetBool("isOpen",false);
+        //On recouvre les mouvements du joueur
+        PlayerMovement.instance.enabled = true;
     }
     private IEnumerator TypeSentence(string sentence)
     {
@@ -69,5 +83,6 @@ public class DialogueManager : MonoBehaviour
             dialogueText.text += letter;
             yield return new WaitForSeconds(0.01f);
         }
+        isInDialogue = true;
     }
 }

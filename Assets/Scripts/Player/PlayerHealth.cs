@@ -76,7 +76,6 @@ public class PlayerHealth : MonoBehaviour
         //Joue l'audio de mort
         AudioManager.instance.PlayClipAt(deathSound,transform.position);
         //Bloque les mouvements du perso
-        PlayerMovement.instance.StopVelocity();
 
         PlayerMovement.instance.enabled = false;
         
