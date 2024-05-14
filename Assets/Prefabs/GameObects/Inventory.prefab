@@ -45,4 +45,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinsCount: 0
+  contentCurrentIndex: 0
+  content:
+  - {fileID: 11400000, guid: a0831cfd0203d8e4696f33ab9fdd2505, type: 2}
+  - {fileID: 11400000, guid: b63cf7bd6d98d6f4b889fcffdf4006f7, type: 2}
+  - {fileID: 11400000, guid: b63cf7bd6d98d6f4b889fcffdf4006f7, type: 2}
   coinsCountText: {fileID: 0}
+  itemImageUI: {fileID: 0}
+  itemNameUI: {fileID: 0}
+  emptyItemImage: {fileID: 21300000, guid: bccb8e2cd71deae4d812c820d452e614, type: 3}

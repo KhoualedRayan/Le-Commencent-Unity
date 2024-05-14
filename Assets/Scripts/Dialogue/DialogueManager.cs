@@ -54,8 +54,8 @@ public class DialogueManager : MonoBehaviour
         {
             sentences.Enqueue(sentence);
         }
+
         DisplayNextSentence();
-        
     }
     public void DisplayNextSentence()
     {
@@ -75,14 +75,19 @@ public class DialogueManager : MonoBehaviour
         //On recouvre les mouvements du joueur
         PlayerMovement.instance.enabled = true;
     }
+
     private IEnumerator TypeSentence(string sentence)
     {
+        
         dialogueText.text = "";
         foreach (char letter in sentence.ToCharArray())
         {
+            
             dialogueText.text += letter;
             yield return new WaitForSeconds(0.01f);
+            if(!isInDialogue)
+                isInDialogue = true;
         }
-        isInDialogue = true;
+        
     }
 }
