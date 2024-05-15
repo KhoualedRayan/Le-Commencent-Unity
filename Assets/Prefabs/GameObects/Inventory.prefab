@@ -51,3 +51,4 @@ MonoBehaviour:
   itemNameUI: {fileID: 0}
   emptyItemImage: {fileID: 21300000, guid: bccb8e2cd71deae4d812c820d452e614, type: 3}
   playerEffect: {fileID: 0}
+  consumeItemClip: {fileID: 8300000, guid: ade470a4306aa7148a48dee7d22dbfe8, type: 3}

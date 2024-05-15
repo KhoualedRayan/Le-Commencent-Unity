@@ -15,6 +15,7 @@ public class Inventory : MonoBehaviour
     public Text itemNameUI;
     public Sprite emptyItemImage;
     public PlayerEffects playerEffect;
+    public AudioClip consumeItemClip;
 
     private void Awake()
     {
@@ -52,6 +53,7 @@ public class Inventory : MonoBehaviour
             
             content.Remove(currentItem);    
             GetNextItem();
+            AudioManager.instance.PlayClipAt(consumeItemClip,transform.position);
         }
         UpdateInventoryUI();
         

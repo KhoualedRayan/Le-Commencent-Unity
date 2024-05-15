@@ -10,6 +10,6 @@ public class Item : ScriptableObject
     public int hpGiven; // Les HP rendus par l'item
     public int speedGiven; // La vitesse bonus donnée par l'item
     public float speedDuration; // La durée du buff de l'item
-
+    public int price; // Prix de l'item
 
 }
