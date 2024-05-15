@@ -9,6 +9,12 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene(levelToLoad);
     }
 
+    public void NewGame()
+    {
+        PlayerPrefs.DeleteAll();
+        SceneManager.LoadScene(levelToLoad);
+    }
+
     public void SettingsButton()
     {
         settingsWindow.SetActive(true);
