@@ -3,20 +3,24 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - FadeSystem
+  - PlayerSpawn
+  - InteractUI
+  - BoiteDeDialogue
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Ladder
+  - Grimm
+  - DeathZone
+  - Chest
+  - Enemy
+  - NPC
   - 
   - 
   - 
